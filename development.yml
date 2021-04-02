@@ -6,7 +6,10 @@
       pkg:
         - neovim
         - tmux
-  - name: Debs
+  - name: Add VS Code apt repo & signing key
+    command: sh scripts/vscode.sh
+  - name: Installing VS Code
     apt:
-      deb:
-        - https://go.microsoft.com/fwlink/?LinkID=760868
+      pkg:
+        - apt-transport-https
+        - code
