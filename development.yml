@@ -1,0 +1,12 @@
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Install packages
+    apt:
+      pkg:
+        - neovim
+        - tmux
+  - name: Debs
+    apt:
+      deb:
+        - https://go.microsoft.com/fwlink/?LinkID=760868
