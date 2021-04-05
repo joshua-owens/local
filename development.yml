@@ -62,3 +62,8 @@
     when: '"deb" in item.browser_download_url'
     apt:
       deb: "{{ item.browser_download_url }}"
+  - name: Create symlink for neovim config file
+    file:
+      src: "{{ playbook_dir }}/dotfiles/init.vim"
+      dest: "/home/jowens/.config/nvim/init.vim"
+      state: link
