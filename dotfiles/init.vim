@@ -39,7 +39,7 @@ Plug 'jacoborus/tender.vim'
 call plug#end()
 
 " Theme
-colorscheme tender 
+silent! colorscheme tender 
 filetype plugin indent on
 syntax on
 "let g:airline_theme = 'gruvbox'
