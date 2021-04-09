@@ -15,6 +15,9 @@
       pkg:
         - neovim
         - tmux
+        - php
+        - php-xml
+        - unzip
   - name: Add VS Code GPG apt key
     apt_key: 
       url: https://packages.microsoft.com/keys/microsoft.asc
@@ -40,6 +43,14 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io
+  - name: Download composer installer
+    get_url:
+      url: https://getcomposer.org/installer
+      dest: /tmp/composer-setup.php
+  - name: Run composer installer
+    command: php /tmp/composer-setup.php
+  - name: Make composer globally available
+    command: mv composer.phar /usr/local/bin/composer
   - name: Create docker user group
     group:
       name: docker
@@ -52,6 +63,14 @@
       append: yes
   - name: Active user group changes
     shell: newgrp docker
+  - name: Download docker-compose
+    get_url: 
+      url: https://github.com/docker/compose/releases/download/1.29.0/docker-compose-Linux-x86_64
+      dest: /usr/local/bin/docker-compose
+  - name: Make docker-compose executable
+    file:
+      path: /usr/local/bin/docker-compose
+      mode: +x
   - name: Get latest version of Hyper from github release
     uri:
       url: https://api.github.com/repos/vercel/hyper/releases/latest
